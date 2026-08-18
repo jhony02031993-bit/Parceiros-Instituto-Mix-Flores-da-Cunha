@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instituto Mix - Oportunidades</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+.hero {
+  background: linear-gradient(135deg, #ff6a00, #ff9900);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 36px;
+}
+
+.btn {
+  background: #ff0000;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <h1>Profissões que moldam seu destino</h1>
+  <p>+300 cursos • Reconhecidos pelo MEC</p>
+  <button class="btn" onclick="scrollToForm()">QUERO MINHA VAGA</button>
+</div>
+
+<div class="container" id="formulario">
+
+<h2>Solicitar Vaga</h2>
+
+<form onsubmit="enviarForm(event)">
+
+<input type="text" placeholder="Seu nome" required>
+<input type="text" placeholder="Seu contato (WhatsApp)" required>
+<input type="text" placeholder="Empresa onde trabalha">
+
+<label>Curso gratuito</label>
+<select>
+<option>Escolha um curso</option>
+<option>CANVA</option>
+<option>EXCEL</option>
+<option>MARKETING DIGITAL</option>
+<option>INTELIGÊNCIA ARTIFICIAL</option>
+</select>
+
+<label>Área de interesse para bolsa</label>
+<select id="area" onchange="mostrarSubmenu()">
+<option value="">Selecione</option>
+<option value="cursos">Cursos</option>
+<option value="faculdade">Faculdade / Tecnólogo</option>
+<option value="proeja">PROEJA</option>
+</select>
+
+<select id="subcursos" class="hidden"></select>
+
+<button class="btn">SOLICITAR VAGA</button>
+
+</form>
+
+</div>
+
+<script>
+function scrollToForm() {
+  document.getElementById("formulario").scrollIntoView({behavior:"smooth"});
+}
+
+function mostrarSubmenu() {
+  let area = document.getElementById("area").value;
+  let sub = document.getElementById("subcursos");
+
+  sub.innerHTML = "";
+  sub.classList.remove("hidden");
+
+  let dados = {
+    cursos: ["Administração", "Tecnologia", "Beleza"],
+    faculdade: ["Administração", "Engenharia", "Pedagogia"],
+    proeja: ["Ensino Médio", "Fundamental"]
+  };
+
+  if (dados[area]) {
+    dados[area].forEach(curso => {
+      let opt = document.createElement("option");
+      opt.text = curso;
+      sub.add(opt);
+    });
+  }
+}
+
+function enviarForm(e) {
+  e.preventDefault();
+  window.location.href = "obrigado.html";
+}
+</script>
+
+</body>
+</html>
